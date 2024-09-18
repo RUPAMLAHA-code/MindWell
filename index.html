@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Custom scrollbar styles */
         #chatHistory::-webkit-scrollbar {
             width: 8px;
         }
+
         #chatHistory::-webkit-scrollbar-track {
             background: transparent;
         }
+
         #chatHistory::-webkit-scrollbar-thumb {
             background-color: rgba(90, 90, 90, 0.5);
             border-radius: 10px;
             border: 2px solid var(--chat-bg-color);
         }
+
         #chatHistory::-webkit-scrollbar-thumb:hover {
             background-color: rgba(119, 119, 119, 0.7);
         }
 
         /* Text appear animation */
         @keyframes text-appear {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .text-appear {
             animation: text-appear 0.7s ease-out;
         }
@@ -53,14 +66,17 @@
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
+
         #sendButton:hover:not(.disabled) {
             background-color: var(--button-bg-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
+
         #sendButton i {
             transition: transform 0.3s ease;
         }
+
         #sendButton:hover:not(.disabled) i {
             transform: translateY(-2px);
         }
@@ -80,10 +96,13 @@
         }
 
         body.light-mode {
-            --bg-gradient-top: #FFA726; /* Light orange */
-            --bg-gradient-bottom: #FB8C00; /* Darker orange */
+            --bg-gradient-top: #FFA726;
+            /* Light orange */
+            --bg-gradient-bottom: #FB8C00;
+            /* Darker orange */
             --text-color: #1a202c;
-            --chat-bg-color: #FFE0B2; /* Lightest orange for chat background */
+            --chat-bg-color: #FFE0B2;
+            /* Lightest orange for chat background */
             --input-bg-color: #FFCC80;
             --input-text-color: #4a5568;
             --user-bubble-bg: #FFB74D;
@@ -107,11 +126,13 @@
             margin-bottom: 10px;
             word-wrap: break-word;
         }
+
         .user-bubble {
             background-color: var(--user-bubble-bg);
             color: white;
             align-self: flex-end;
         }
+
         .ai-bubble {
             background-color: var(--ai-bubble-bg);
             color: var(--text-color);
@@ -128,8 +149,10 @@
         /* Input and chat history styles */
         #chatHistory {
             color: var(--text-color);
-            padding-right: 10px; /* Add spacing for scrollbar */
+            padding-right: 10px;
+            /* Add spacing for scrollbar */
         }
+
         #chatInput {
             background-color: var(--input-bg-color);
             color: var(--input-text-color);
@@ -141,6 +164,7 @@
             align-items: center;
             margin-bottom: 10px;
         }
+
         .typing-indicator .dot {
             height: 8px;
             width: 8px;
@@ -150,19 +174,24 @@
             display: inline-block;
             animation: typing 1s infinite;
         }
+
         .typing-indicator .dot:nth-child(2) {
             animation-delay: 0.2s;
         }
+
         .typing-indicator .dot:nth-child(3) {
             animation-delay: 0.4s;
         }
+
         @keyframes typing {
             0% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-6px);
             }
+
             100% {
                 transform: translateY(0);
             }
@@ -173,49 +202,112 @@
             .max-w-lg {
                 max-width: 100%;
             }
+
             .px-4 {
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
         }
+
+        /* Toggle Buttons Styling */
+        .button-container {
+            position: relative;
+        }
+
+        #toggleButtons {
+            position: absolute;
+            bottom: 60px; /* Adjust based on button size */
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #toggleButtons button {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.3s, opacity 0.3s;
+            transition-timing-function: ease-in-out;
+            pointer-events: none;
+            margin-bottom: 10px;
+        }
+
+        .button-container:hover #toggleButtons button {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Delay for each button */
+        #toggleButtons button:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+
+        #toggleButtons button:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        /* Rotate settings button on hover */
+        #settingsToggle {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-container:hover #settingsToggle {
+            transform: rotate(45deg);
+        }
+
+        /* Change icon on hover */
+        .button-container:hover #settingsToggle i::before {
+            content: "\f00d"; /* Unicode for FontAwesome times icon */
+        }
     </style>
 </head>
+
 <body class="bg-gray-900 flex items-center justify-center min-h-screen relative">
     <div class="absolute top-4 left-4">
         <h1 class="text-white text-2xl font-bold">MindWell</h1>
     </div>
     <div class="text-center w-full max-w-lg px-4">
         <h1 id="greeting" class="text-white text-4xl font-bold mb-8 text-appear"></h1>
-        <div class="bg-gray-700 p-8 rounded-lg shadow-lg box-shadow" style="background-color: var(--chat-bg-color);">
+        <div class="bg-gray-700 p-8 rounded-lg shadow-lg box-shadow"
+            style="background-color: var(--chat-bg-color);">
             <div id="chatHistory" class="text-left max-h-64 overflow-y-auto mb-4"></div>
             <div class="flex items-center">
-                <input id="chatInput" type="text" placeholder="Type your message here" class="bg-gray-600 text-gray-400 p-2 rounded w-full mr-2" style="background-color: var(--input-bg-color); color: var(--input-text-color);" disabled>
+                <input id="chatInput" type="text" placeholder="Type your message here"
+                    class="bg-gray-600 text-gray-400 p-2 rounded w-full mr-2"
+                    style="background-color: var(--input-bg-color); color: var(--input-text-color);" disabled>
                 <button id="sendButton" class="disabled" disabled>
                     <i class="fas fa-paper-plane text-white"></i>
                 </button>
             </div>
         </div>
     </div>
-    <div class="fixed bottom-4 right-4 flex flex-col space-y-2">
-        <button id="modeToggle" class="bg-gray-700 p-4 rounded-full shadow-lg">
-            <i id="modeIcon" class="fas fa-sun text-white"></i>
-        </button>
-        <button class="bg-purple-600 p-4 rounded-full shadow-lg">
+    <!-- Updated Buttons -->
+    <div class="fixed bottom-4 right-4 button-container">
+        <!-- Settings Toggle Button -->
+        <button id="settingsToggle" class="bg-purple-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
             <i class="fas fa-cog text-white"></i>
         </button>
-        <button class="bg-purple-600 p-4 rounded-full shadow-lg">
-            <i class="fas fa-brain text-white"></i>
-        </button>
-        <button class="bg-gray-700 p-4 rounded-full shadow-lg">
-            <i class="fas fa-times text-white"></i>
-        </button>
+        <!-- Buttons to Show/Hide -->
+        <div id="toggleButtons">
+            <button id="modeToggle" class="bg-gray-700 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
+                <i id="modeIcon" class="fas fa-sun text-white"></i>
+            </button>
+            <button class="bg-purple-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
+                <i class="fas fa-brain text-white"></i>
+            </button>
+        </div>
     </div>
+
     <script>
         const chatInput = document.getElementById('chatInput');
         const chatHistory = document.getElementById('chatHistory');
         const sendButton = document.getElementById('sendButton');
         const modeToggle = document.getElementById('modeToggle');
         const modeIcon = document.getElementById('modeIcon');
+        const settingsToggle = document.getElementById('settingsToggle');
+        const toggleButtons = document.getElementById('toggleButtons');
+        const buttonContainer = document.querySelector('.button-container');
         let isResponding = false;
         let wordCount = 0;
 
@@ -243,14 +335,14 @@
 
         chatInput.addEventListener('input', updateInputState);
 
-        chatInput.addEventListener('keydown', function(e) {
+        chatInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' && !isResponding && chatInput.value.trim() !== '') {
                 e.preventDefault();
                 sendMessage();
             }
         });
 
-        sendButton.addEventListener('click', function() {
+        sendButton.addEventListener('click', function () {
             if (!isResponding && chatInput.value.trim() !== '') {
                 sendMessage();
             }
@@ -258,32 +350,32 @@
 
         function sendMessage() {
             if (isResponding) return;
-            
+
             const message = chatInput.value.trim();
             if (message !== '') {
                 isResponding = true;
                 updateInputState();
-                
+
                 addMessageToHistory('User', message, 'user-bubble');
                 chatInput.value = '';
                 chatInput.disabled = true;
-                
+
                 // Show typing indicator
                 const typingIndicator = document.createElement('div');
                 typingIndicator.className = 'typing-indicator ai-bubble text-appear';
                 typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
-                
+
                 const typingContainer = document.createElement('div');
                 typingContainer.className = 'chat-message';
                 typingContainer.appendChild(typingIndicator);
-                
+
                 chatHistory.appendChild(typingContainer);
                 chatHistory.scrollTop = chatHistory.scrollHeight;
-                
+
                 setTimeout(() => {
                     // Remove typing indicator
                     chatHistory.removeChild(typingContainer);
-                    
+
                     addMessageToHistory('AI', `I received your message: "${message}". How can I assist you further?`, 'ai-bubble', true);
                     isResponding = false;
                     chatInput.disabled = false;
@@ -294,9 +386,9 @@
 
         function addMessageToHistory(sender, message, bubbleClass, animate = false) {
             const messageElement = document.createElement('div');
-            messageElement.className = `chat-bubble ${bubbleClass} ${animate ? 'text-appear' : 'text-appear'}`;
+            messageElement.className = `chat-bubble ${bubbleClass} ${animate ? 'text-appear' : ''}`;
             messageElement.textContent = `${message}`;
-            
+
             const container = document.createElement('div');
             container.className = 'chat-message';
             container.appendChild(messageElement);
@@ -310,7 +402,8 @@
             }
         }
 
-        modeToggle.addEventListener('click', function() {
+        // Event listener for mode toggle
+        modeToggle.addEventListener('click', function () {
             document.body.classList.toggle('light-mode');
             if (document.body.classList.contains('light-mode')) {
                 modeIcon.classList.remove('fa-sun');
@@ -325,4 +418,5 @@
         updateInputState();
     </script>
 </body>
+
 </html>
