@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen relative">
+    <!-- Existing top-left heading -->
+    <div class="absolute top-4 left-4">
+        <h1 class="text-white text-2xl font-bold" id="userGreeting"></h1>
+    </div>
+
+    <!-- Log Out Button -->
+    <div class="absolute top-4 right-4" id="logoutSection" style="display: none;">
+        <button id="logoutButton" class="about-button">Log Out</button>
+    </div>
+    <div class="absolute top-4 left-4">
+        <h1 class="text-white text-2xl font-bold">MindWell</h1>
+    </div>
+    <!-- Talk to Specialist button -->
+    <div class="absolute top-4 right-4">
+        <a href="login.html" class="about-button">Talk to Specialist</a>
+    </div>
+    <div class="text-center w-full max-w-lg px-4">
+        <h1 id="greeting" class="text-white text-4xl font-bold mb-8 text-appear"></h1>
+        <div class="chat-container">
+            <div id="chatHistory" class="text-left max-h-64 overflow-y-auto mb-4"></div>
+            <div class="flex items-center">
+                <input id="chatInput" type="text" placeholder="Type your message here"
+                    class="bg-gray-600 text-gray-400 p-2 rounded w-full mr-2"
+                    style="background-color: var(--input-bg-color); color: var(--input-text-color);" disabled>
+                <button id="sendButton" class="disabled" disabled>
+                    <i class="fas fa-paper-plane text-white"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Existing Buttons -->
+    <div class="fixed bottom-4 right-4 button-container">
+        <!-- Settings Toggle Button -->
+        <button id="settingsToggle"
+            class="bg-purple-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
+            <i class="fas fa-cog text-white"></i>
+        </button>
+        <!-- Buttons to Show/Hide -->
+        <div id="toggleButtons">
+            <button id="modeToggle"
+                class="bg-gray-700 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
+                <i id="modeIcon" class="fas fa-sun text-white"></i>
+            </button>
+            <button class="bg-purple-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center">
+                <i class="fas fa-brain text-white"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

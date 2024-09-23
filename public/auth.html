@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md">
+        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg">
+            <h1 id="form-header" class="text-2xl font-bold mb-4 text-center">Login</h1>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label for="login-username" class="block text-gray-700 font-bold mb-2">Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your username"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-6">
+                    <label for="login-password" class="block text-gray-700 font-bold mb-2">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button id="login-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Login
+                    </button>
+                    <a href="#" id="toggle-to-signup" class="text-blue-500 hover:text-blue-800">Don't have an account? Sign Up</a>
+                </div>
+            </form>
+
+            <!-- Signup Form (Initially hidden) -->
+            <form id="signupForm" class="hidden">
+                <div class="mb-4">
+                    <label for="signup-username" class="block text-gray-700 font-bold mb-2">Username</label>
+                    <input type="text" id="signup-username" placeholder="Choose a username"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-password" class="block text-gray-700 font-bold mb-2">Password</label>
+                    <input type="password" id="signup-password" placeholder="Choose a password"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-password-confirm" class="block text-gray-700 font-bold mb-2">Confirm Password</label>
+                    <input type="password" id="signup-password-confirm" placeholder="Confirm your password"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button id="signup-btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Sign Up
+                    </button>
+                    <a href="#" id="toggle-to-login" class="text-blue-500 hover:text-blue-800">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- External JS file for auth logic -->
+    <script src="auth.js"></script>
+</body>
+
+</html>
