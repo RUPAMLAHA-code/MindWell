@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWell</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-gray-900">
+    <div class="absolute top-4 left-4">
+        <h1 id="mindwell" class="text-white text-2xl font-bold">MindWell</h1>
+    </div>
+
+    <div class="absolute top-4 right-4 flex items-center space-x-4">
+        <a href="login.html" class="about-button">Talk to Specialist</a>
+        
+        <div id="authSection">
+            <a href="login.html" id="signInButton" class="about-button">Sign In</a>
+            
+            <div id="profileSection" style="display: none;" class="relative flex items-center">
+                <span id="userName" class="mr-2 text-white"></span>
+                <div class="profile-icon cursor-pointer">
+                  <i class="fas fa-user-circle text-2xl"></i>
+                </div>
+                <div id="profileDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 hidden">
+                  <button id="logoutButton" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 w-full text-left">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+                  </button>
+                </div>
+              </div>
+        </div>
+
+    </div>
+
+    <div class="text-center w-full max-w-lg px-4">
+        <h1 id="greeting" class="text-white text-4xl font-bold mb-8 text-appear"></h1>
+
+        <div class="chat-container">
+            <div id="chatHistory" class="text-left max-h-64 overflow-y-auto mb-4"></div>
+
+            <div class="flex items-center">
+                <input type="text" id="chatInput" class="flex-grow bg-gray-700 text-white rounded-l-lg px-4 py-2 focus:outline-none" placeholder="Type your message...">
+                <button id="sendButton" class="bg-blue-500 text-white rounded-r-lg px-4 py-2 ml-2 focus:outline-none disabled:opacity-50" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-4 right-4 button-container">
+        <div id="toggleButtons">
+            <button id="modeToggle" class="bg-gray-800 text-white rounded-full p-3 mb-2 focus:outline-none">
+                <i id="modeIcon" class="fas fa-sun"></i>
+            </button>
+            <button id="settingsToggle" class="bg-gray-800 text-white rounded-full p-3 focus:outline-none">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

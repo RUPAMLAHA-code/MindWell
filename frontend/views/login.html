@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/auth.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="auth-container">
+        <form id="loginForm">
+            <h2>Welcome back!</h2>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="google-signin">
+            <p>OR LOGIN WITH EMAIL</p>
+            <button class="google-btn">
+                <img src="../assets/images/google-icon.png" alt="Google Icon">
+                Sign in with Google
+            </button>
+        </div>
+        <p class="signup-link" id="signupLink">OR SIGNUP</p>
+    </div>
+    <script src="../assets/scripts/auth.js"></script>
+    <script>
+        // Adding event listener to the signup link
+        document.getElementById('signupLink').addEventListener('click', function() {
+            window.location.href = 'signup.html'; // Redirect to signup.html
+        });
+    </script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+    
+                const data = await response.json();
+    
+                if (data.success) {
+                    localStorage.setItem('username', email.split('@')[0]);
+                    window.location.href = 'index.html';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during login.');
+            }
+        });
+    </script>
+</body>
+</html>

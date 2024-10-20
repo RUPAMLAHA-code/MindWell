@@ -1,0 +1,215 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Root Variables for Easy Theming */
+:root {
+    --background-color: #121212;
+    --container-bg: #1e1e1e;
+    --input-bg: #2c2c2c;
+    --input-focus-bg: #3a3a3a;
+    --button-bg: #6200ea;
+    --button-hover-bg: #3700b3;
+    --text-color: #ffffff;
+    --link-color: #bb86fc;
+    --link-hover-color: #cf93ff;
+    --shadow-color: rgba(0, 0, 0, 0.7);
+    --transition-speed: 0.3s;
+    --font-family: 'Roboto', sans-serif; /* Updated font family */
+}
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container Styles */
+.auth-container {
+    background-color: var(--container-bg);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    animation: slideIn 0.6s ease-out forwards;
+    width: 350px;
+    max-width: 90%;
+}
+
+/* Heading Styles */
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    letter-spacing: 1px;
+    color: #e0e0e0;
+    font-weight: 700; /* Bold heading */
+    animation: fadeInDown 0.6s ease-out forwards;
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 20px;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    font-family: var(--font-family); /* Ensure inputs use the same font */
+    font-weight: 400; /* Regular font weight for inputs */
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+input::placeholder {
+    color: #b0b0b0;
+}
+
+input:focus {
+    background-color: var(--input-focus-bg);
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 0 5px var(--button-bg);
+}
+
+/* Button Styles */
+.btn {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    font-weight: 700; /* Bold font weight for emphasis */
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.btn:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px) scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 6px 10px var(--shadow-color);
+}
+
+/* Paragraph and Link Styles */
+.auth-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: #b0b0b0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .auth-container {
+        padding: 30px 20px;
+    }
+
+    .auth-container h2 {
+        font-size: 1.5em;
+    }
+}
+/* Add to existing CSS */
+
+.auth-container {
+    text-align: center;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.google-signin {
+    margin-top: 20px;
+}
+
+.google-signin p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #b0b0b0;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #333;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.google-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.signup-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: var(--link-color);
+    cursor: pointer;
+}
+
+.signup-link:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
